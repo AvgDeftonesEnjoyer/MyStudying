@@ -19,3 +19,8 @@ elif check == 2: #Реалізуй програму, яка використов
 
     print(f"The average num is - {median_values}")
 
+elif check == 3: #Створи власний модуль, який містить функцію для обчислення факторіалу числа.
+    import myModule
+
+    num = int(input("Enter the num: "))
+    myModule.factorial(num)
