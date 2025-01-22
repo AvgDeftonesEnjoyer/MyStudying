@@ -3,19 +3,24 @@ check = int(input("Choose homework: 1, 2, 3, 4, 5 : "))
 if check == 1 : #списки
     check1 = int(input("Choose homework: 1, 2 : "))
     if check1 == 1:
+
         #Створи список чисел від 1 до 10. Видали всі парні числа та виведи залишок.
         user_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         i = 0
+
         while i < len(user_list):
             if user_list[i] % 2 == 0:
                 user_list.pop(i)
             else:
                 i += 1
+
         print(user_list)
+
     elif check1 == 2:
         #Реалізуй програму, яка приймає список слів і друкує довжину кожного слова.
         user_list = ["hello world", "USA", "apple", "rust", "im learning python"]
         i = 0
+
         while i < len(user_list):
             print(f"Length of '{user_list[i]}' is {len(user_list[i])}")
             i += 1
@@ -45,6 +50,7 @@ elif check == 4: #Множини
 
 elif check == 5: # рядки
     string = input("Enter the string: ")
+    
     if string == string[::-1]: 
         print(f"The word {string} is palindrom")
     else:
