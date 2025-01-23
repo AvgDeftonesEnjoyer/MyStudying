@@ -10,4 +10,4 @@ if check == 1: # Використовуй бібліотеку requests, щоб 
     with open('my_requests/story.txt', 'w') as file:
         file.write(responce.text)
 
-    print(responce.status_code)
+    print(responce.status_code, 'Now you can check the story.txt file in my_requests folder')
