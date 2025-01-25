@@ -1,13 +1,28 @@
-check = int(input("Choose homework number: 1, 2, 3: "))
+import requests
 
-if check == 1: # Використовуй бібліотеку requests, щоб зробити HTTP-запит до будь-якого публічного API і вивести отримані дані.    
-    import requests
+API_KEY = 'ce61fc5d32bd08550ebbaaadcf9bd46f'
+city_name = input("Enter your city: ")
+url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}&units=metric'
 
-    url = 'https://loripsum.net/api/1/short/plaintext'
+try:
+    response = requests.get(url)
+    response.raise_for_status()  
 
-    responce = requests.get(url)
+    data = response.json()
+    temperature = data['main']['temp']
+    humidity = data['main']['humidity']
+    wind_speed = data['wind']['speed']
+    weather_description = data['weather'][0]['description']
 
-    with open('my_requests/story.txt', 'w') as file:
-        file.write(responce.text)
+    print(f"Weather in {city_name}:")
+    print(f"Temperature: {temperature}°C")
+    print(f"Humidity: {humidity}%")
+    print(f"Wind Speed: {wind_speed} m/s")
+    print(f"Description: {weather_description.capitalize()}")
 
-    print(responce.status_code, 'Now you can check the story.txt file in my_requests folder')
+except requests.exceptions.HTTPError as http_err:
+    print(f"HTTP error occurred: {http_err}")
+except requests.exceptions.RequestException as req_err:
+    print(f"Request error occurred: {req_err}")
+except KeyError:
+    print("Invalid response structure. Please check the city name or API response.")
